@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/ChainlinkClient.sol";
-// import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
+
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
 
 contract ProposalId is ChainlinkClient {
