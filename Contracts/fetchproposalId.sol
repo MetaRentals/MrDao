@@ -9,13 +9,21 @@ contract ProposalId is ChainlinkClient {
 
   bytes public data;
   string public proposalId;
-  
+  uint256 public counter;
+
+  struct proposal {
+    string propId;
+  }
+
+  mapping(uint256 => proposal)public Proposals;
+
   constructor() {
     setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
     setChainlinkOracle(0xd23cB7C9bDa53734ef4595F7a23398a85443246E);
   }
+  
 
-
+  
   function requestBytes() public
   {
     bytes32 specId = "ace3149ce96b42c08f9999be703d4517";
@@ -41,10 +49,13 @@ contract ProposalId is ChainlinkClient {
     emit RequestFulfilled(requestId, bytesData);
     data = bytesData;
     proposalId = iToHex(abi.encodePacked(data));
+    bytes memory Alreadyexist = bytes(Proposals[counter].propId);
+    require(Alreadyexist.length == 0);
+      Proposals[counter].propId = proposalId;
+      counter++;
   }
 
-
-
+  
   function iToHex(bytes memory buffer) public pure returns (string memory) {
 
         // Fixed buffer size for hexadecimal convertion
