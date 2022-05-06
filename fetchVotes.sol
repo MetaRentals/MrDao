@@ -29,11 +29,6 @@ contract SnapshotRequest is ChainlinkClient,ConfirmedOwner {
     setChainlinkOracle(0xd23cB7C9bDa53734ef4595F7a23398a85443246E);
   }
 
-       function concatenate(string memory a,string memory _proposalIdURL ,string memory b ,uint256 _id) public view returns (string memory){
-        _proposalIdURL = proposalContract.Proposals(_id);
-        return string(abi.encodePacked(a,' ',b));
-    } 
- 
   function requestVotes(uint256 _id)
     public
     onlyOwner
